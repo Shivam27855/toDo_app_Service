@@ -156,6 +156,23 @@ app.get("/deleteTodoItem/:todoId",(req,res)=>{
         }
     })
 })
+
+//GE Project services
+
+app.get("/getGeItem",(req,res)=>{
+    con.query('SELECT * FROM ge_list', (err_geItem, rows_geItem, fields_todoItem) => {
+    if (err_geItem) throw err_geItem
+    let dataLength_geItem=rows_geItem.length;
+    if(dataLength_geItem==0)
+    res.send({"error":"No Item in Inventory"});
+    else
+    {
+       res.send(rows_geItem)  
+    }
+})
+
+})
+
   
 
 const PORT=process.env.PORT || 5000;
